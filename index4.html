@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos botones</title>
+    <script>
+        window.onload = function(){
+            document.getElementById("boton").addEventListener("click", sumar);
+        }
+        
+        function sumar(){
+            var num1 = document.getElementById("num1").value;
+            var num2 = document.getElementById("num2").value;
+            
+            // Validar que los campos no estén vacíos
+            if (num1 === "" || num2 === "") {
+                document.getElementById("error").innerHTML = "Por favor, ingrese valores en ambos campos";
+                return;
+            }
+            
+            // Validar que los campos sean números
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById("error").innerHTML = "Por favor, ingrese valores numéricos en ambos campos";
+                return;
+            }
+            
+            var suma = parseInt(num1) + parseInt(num2);
+            
+            // Insertar el resultado usando insertAdjacentHTML
+            var resultado = document.getElementById("resultado");
+            resultado.insertAdjacentHTML('beforeend', "La suma es: " + suma + "<br>");
+            
+            // Borrar valores de los inputs
+            document.getElementById("num1").value = "";
+            document.getElementById("num2").value = "";
+            
+            // Borrar mensaje de error
+            document.getElementById("error").innerHTML = "";
+        }
+
+    </script>
+</head>
+<body>
+    <fieldset>
+        <legend>Eventos botones</legend>
+        Número 1: <input type="text" id="num1"><br>
+        <span id="error1"></span><br>
+        Número 2: <input type="text" id="num2"><br>
+        <span id="error2"></span><br>
+    
+        <input type="button" id="boton" value="Calcular">
+        <p id="error"></p>
+        <p id="resultado"></p>
+    </fieldset>
+</body>
+</html>
